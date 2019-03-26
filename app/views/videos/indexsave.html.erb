@@ -1,0 +1,49 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Videos</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>File</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @videos.each do |video| %>
+      <tr>
+        <td><%= video.title %></td>
+        <td><%= video.file %></td>
+        <td> <video controls width="320" height="240" src="<%= video.file %>"></video>
+        
+          <div class="btn-group">
+            <!--<a class="btn btn-default btn-sm" href="<   = link.url %>">Visit Link</a>-->
+            <%= link_to like_video_path(video), method: :put, class: "btn btn-default btn-sm" do %>
+            <span class="glyphicon glyphicon-chevron-up"></span>
+          Upvote
+          <%= video.get_upvotes.size %>
+          <% end %>
+          <%= link_to dislike_video_path(video), method: :put, class: "btn btn-default btn-sm" do %>
+          <span class="glyphicon glyphicon-chevron-down"></span>
+          Downvote
+          <%= video.get_downvotes.size %>
+          <% end %>
+          </div>
+        
+        
+        
+        
+        </td>
+        <td><%= link_to 'Show', video %></td>
+        <td><%= link_to 'Edit', edit_video_path(video) %></td>
+        <td><%= link_to 'Destroy', video, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Video', new_video_path %>

@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  ipaddress: MyString
+  upvoted: false
+  upvotedcount: 1
+
+two:
+  ipaddress: MyString
+  upvoted: false
+  upvotedcount: 1

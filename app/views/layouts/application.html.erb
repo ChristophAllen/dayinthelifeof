@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Workspace</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+
+<link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<!------ Include the above in your HEAD tag ---------->
+
+<div class="container">
+  <div class="row">
+    <div class="span12">
+      <div class="head">
+        <div class="row-fluid">
+            <div class="span12">
+                <div class="span6">
+                    <!--<h1 class="muted">Day in the Life of..</h1>-->
+                </div>
+            </div>
+        </div>
+
+        <div class="navbar">
+            <div class="navbar-inner">
+                <div class="container">
+                    <ul class="nav">
+                        <li>
+                            <a href="http://localhost:3000">Day In The Life Of</a>
+                        </li>
+
+                        <li>
+                            <a href="http://localhost:3000/videomasterindex/search">Search</a>
+                        </li>
+
+                        <li>
+                            <a href="http://localhost:3000/videomasterindex/getpaid">Get Paid</a></a>
+                        </li>
+
+                        <li>
+                            <a href="http://localhost:3000/videomasterindex/contactus">Contact Me</a>
+                        </li>
+                                                
+                        <li class="span4 offset2">
+                            <% if user_signed_in? %>
+                                <button class="btn pull-right"> <%= link_to "Sign out", destroy_user_session_path, :method => :delete %> </button>
+                            <% end %>
+                            <% if !user_signed_in? %>
+                                <button class ="btn pull-right"> <a href="http://localhost:3000/users/sign_in">Sign In</a> </button>
+                            <% end %>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<%= yield %>
+
+</body>
+</html>

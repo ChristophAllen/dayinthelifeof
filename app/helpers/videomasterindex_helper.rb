@@ -1,0 +1,2 @@
+module VideomasterindexHelper
+end

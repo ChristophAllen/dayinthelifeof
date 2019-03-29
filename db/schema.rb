@@ -1,3 +1,4 @@
+# encoding: UTF-8
 # This file is auto-generated from the current state of the database. Instead
 # of editing this file, please use the migrations feature of Active Record to
 # incrementally modify your database, and then regenerate this schema definition.
@@ -10,10 +11,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190328173503) do
+ActiveRecord::Schema.define(version: 20190314165149) do
 
-  # These are extensions that must be enabled in order to support this database
-  enable_extension "plpgsql"
+  create_table "Videos", force: :cascade do |t|
+    t.string   "title"
+    t.string   "file"
+    t.datetime "created_at",                     null: false
+    t.datetime "updated_at",                     null: false
+    t.text     "contributor"
+    t.string   "email"
+    t.string   "phone"
+    t.integer  "cached_votes_total", default: 0
+  end
 
   create_table "ipaddresstrackers", force: :cascade do |t|
     t.string   "ipaddress"
@@ -31,20 +40,10 @@ ActiveRecord::Schema.define(version: 20190328173503) do
     t.datetime "remember_created_at"
     t.datetime "created_at",                          null: false
     t.datetime "updated_at",                          null: false
-    t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
-    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   end
 
-  create_table "videos", force: :cascade do |t|
-    t.string   "title"
-    t.string   "file"
-    t.datetime "created_at",                     null: false
-    t.datetime "updated_at",                     null: false
-    t.text     "contributor"
-    t.string   "email"
-    t.string   "phone"
-    t.integer  "cached_votes_total", default: 0
-  end
+  add_index "users", ["email"], name: "index_users_on_email", unique: true
+  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
 
   create_table "votes", force: :cascade do |t|
     t.integer  "votable_id"
@@ -56,8 +55,9 @@ ActiveRecord::Schema.define(version: 20190328173503) do
     t.integer  "vote_weight"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.index ["votable_id", "votable_type", "vote_scope"], name: "index_votes_on_votable_id_and_votable_type_and_vote_scope", using: :btree
-    t.index ["voter_id", "voter_type", "vote_scope"], name: "index_votes_on_voter_id_and_voter_type_and_vote_scope", using: :btree
   end
+
+  add_index "votes", ["votable_id", "votable_type", "vote_scope"], name: "index_votes_on_votable_id_and_votable_type_and_vote_scope"
+  add_index "votes", ["voter_id", "voter_type", "vote_scope"], name: "index_votes_on_voter_id_and_voter_type_and_vote_scope"
 
 end

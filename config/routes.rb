@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
-  devise_for :users, :only => []
-  resources :videos, :only => [:index, :show] do
+  devise_for :users 
+  resources :videos do
     member do
       put "like", to: "videos#upvote"
       put "dislike", to: "videos#downvote"

@@ -9,13 +9,13 @@ Rails.application.routes.draw do
     end
   end
   root 'videomasterindex#alphabetical', as: :home
-  get 'videomasterindex/mostupvoted', as: :upvoted
-  get 'videomasterindex/alphabetical', as: :alphabetical
-  get 'videomasterindex/mostrecent', as: :recent
+  get 'videomasterindex/mostupvoted'
+  get 'videomasterindex/alphabetical'
+  get 'videomasterindex/mostrecent'
   # get 'videomasterindex/randomized'
-  get 'videomasterindex/getpaid', as: :paid
-  get 'videomasterindex/contactus', as: :contact
-  get 'videomasterindex/search', as: :search
+  get 'videomasterindex/getpaid'
+  get 'videomasterindex/contactus'
+  get 'videomasterindex/search'
   # post 'videomasterindex/somebutton'
   # get 'videomasterindex/somebutton'
 

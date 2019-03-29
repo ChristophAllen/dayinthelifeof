@@ -50,7 +50,7 @@
                                 <button class="btn pull-right"> <%= link_to "Sign out", destroy_user_session_path, :method => :delete %> </button>
                             <% end %>
                             <% if !user_signed_in? %>
-                                <button class ="btn pull-right"> <a href="http://localhost:3000/users/sign_in">Sign In</a> </button>
+                                <button class ="btn pull-right"> <a href="/users/sign_up">Sign In</a> </button>
                             <% end %>
                         </li>
                     </ul>

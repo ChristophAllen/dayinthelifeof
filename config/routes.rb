@@ -8,7 +8,7 @@ Rails.application.routes.draw do
       put "unlike" => "videos#unlike"
     end
   end
-  root 'videomasterindex#alphabetical'
+  root 'videomasterindex#alphabetical', to: 'videomasterindex#alphabetical'
   get 'videomasterindex/mostupvoted'
   get 'videomasterindex/alphabetical'
   get 'videomasterindex/mostrecent'

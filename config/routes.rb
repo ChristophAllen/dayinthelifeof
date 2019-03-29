@@ -1,10 +1,6 @@
 Rails.application.routes.draw do
   devise_for :users, :only => []
-<<<<<<< HEAD
   resources :videos, :only => [:index, :show] do
-=======
-  resources :videos do, :only => [:index, :show]
->>>>>>> b332313f904c946821c6dc4355047bf3afa64d9f
     member do
       put "like", to: "videos#upvote"
       put "dislike", to: "videos#downvote"
@@ -12,16 +8,18 @@ Rails.application.routes.draw do
       put "unlike" => "videos#unlike"
     end
   end
-  root 'videomasterindex#alphabetical', to: 'videomasterindex#alphabetical'
-  get 'videomasterindex/mostupvoted'
-  get 'videomasterindex/alphabetical'
-  get 'videomasterindex/mostrecent'
+  root 'videomasterindex#alphabetical', as: :home
+  get 'videomasterindex/mostupvoted', as: :upvoted
+  get 'videomasterindex/alphabetical', as: :alphabetical
+  get 'videomasterindex/mostrecent', as: :recent
   # get 'videomasterindex/randomized'
-  get 'videomasterindex/getpaid'
-  get 'videomasterindex/contactus'
-  get 'videomasterindex/search'
+  get 'videomasterindex/getpaid', as: :paid
+  get 'videomasterindex/contactus', as: :contact
+  get 'videomasterindex/search', as: :search
   # post 'videomasterindex/somebutton'
   # get 'videomasterindex/somebutton'
+
+  # get 'exit', to: 'sessions#destroy', as: :logout
   
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

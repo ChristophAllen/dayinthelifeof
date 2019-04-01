@@ -14,12 +14,12 @@ class VideosController < ApplicationController
   def upvote
     @video = Video.find(params[:id])
     @ip = request.remote_ip
-    was_it_upvoted = Ipaddresstracker.find_by(ipaddress: @ip, videoid: @video.id, upvoted: true)
+    was_it_upvoted = Ipaddresstracker.find_by(ipaddress: @ip, videoid: @video.id)
     if was_it_upvoted
       @video.downvote_by User.first
       was_it_upvoted.delete
     else
-      Ipaddresstracker.create(:ipaddress => @ip, :upvoted => true, :upvotedcount => 1, :videoid => @video.id)
+      Ipaddresstracker.create(:ipaddress => @ip, :videoid => @video.id)
       @video.vote_by voter: User.first, :duplicate => true
     end
     # Ipaddresstracker.delete_all

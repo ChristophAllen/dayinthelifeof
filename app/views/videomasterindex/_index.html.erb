@@ -2,8 +2,7 @@
 <% @videos.each do |x| %>
 <p> <div class="child">  
   <video controls width="310" height="230" src="<%= x.file %>"></video>
-    <p> <%= x.title %> </p>
-
+    
           <div class="btn-group">
             <%= link_to like_video_path(x), method: :put, remote: :true, id: "like-count", class: "btn btn-default btn-sm" do %>
 
@@ -11,12 +10,14 @@
             Upvote
             <div> <%= x.get_upvotes.size %> </div>
       <% end %>
-          <%= link_to dislike_video_path(x), method: :put, remote: :true, id: "like-count", class: "btn btn-default btn-sm" do %>
+    
+ <!--          <= link_to dislike_video_path(x), method: :put, remote: :true, id: "like-count", class: "btn btn-default btn-sm" do %>
           <span class="glyphicon glyphicon-chevron-down"></span>
           Downvote
-          <%= x.get_downvotes.size %>
-          <% end %>
-          <div>
+          <= x.get_downvotes.size %>
+          < end %> -->
+          <div> 
+
             <br><br>
             <% if user_signed_in? %>
               <p> Contributor: <%= x.contributor %> </p>
@@ -27,7 +28,8 @@
           </div>
           </div>
           
-
+ <%= x.title %> 
+ 
 </div> </p>
 <% end %>
 </div>

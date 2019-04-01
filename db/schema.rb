@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190329025813) do
+ActiveRecord::Schema.define(version: 20190401003847) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -21,6 +21,7 @@ ActiveRecord::Schema.define(version: 20190329025813) do
     t.integer  "upvotedcount"
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
+    t.integer  "videoid"
   end
 
   create_table "users", force: :cascade do |t|
@@ -44,6 +45,7 @@ ActiveRecord::Schema.define(version: 20190329025813) do
     t.string   "email"
     t.string   "phone"
     t.integer  "cached_votes_total", default: 0
+    t.integer  "cached_votes_up",    default: 0
   end
 
   create_table "votes", force: :cascade do |t|

@@ -1,7 +1,7 @@
 class VideomasterindexController < ApplicationController
     
     def mostupvoted
-        @videos = Video.all.order(:cached_votes_total=> :desc).paginate(:page => params[:page], :per_page => 6)
+        @videos = Video.all.order(:cached_votes_up=> :desc).paginate(:page => params[:page], :per_page => 6)
     end
     
     def alphabetical

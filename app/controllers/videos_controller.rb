@@ -14,18 +14,19 @@ class VideosController < ApplicationController
   def upvote
     @video = Video.find(params[:id])
     @ip = request.remote_ip
-    Ipaddresstracker.delete_all
-    if Ipaddresstracker.find_by(ipaddress: @ip)
-      
+    was_it_upvoted = Ipaddresstracker.find_by(ipaddress: @ip, videoid: @video.id, upvoted: true)
+    if was_it_upvoted
+      @video.downvote_by User.first
+      was_it_upvoted.delete
     else
-      Ipaddresstracker.create(:ipaddress => @ip, :upvoted => true, :upvotedcount => 1)
+      Ipaddresstracker.create(:ipaddress => @ip, :upvoted => true, :upvotedcount => 1, :videoid => @video.id)
       @video.vote_by voter: User.first, :duplicate => true
     end
+    # Ipaddresstracker.delete_all
     redirect_to :back
   end
 
   def downvote
-    Ipaddresstracker.delete_all
     @video = Video.find(params[:id])
     @video.downvote_by User.first
     redirect_to :back
@@ -34,7 +35,8 @@ class VideosController < ApplicationController
   # GET /videos
   # GET /videos.json
   def index
-    @videos = Video.search(params[:search], params[:id]).order(:cached_votes_total=> :desc)
+    # @videos = Video.search(params[:search], params[:id]).order(:cached_votes_total=> :desc)
+    @videos = Video.all
     if @videos 
       
     else

@@ -3,6 +3,9 @@ class VideosController < ApplicationController
 
   def like
     @video.upvote_from current_user
+    respond_to do |f|
+      f.js
+    end
     render layout: false
   end
 
@@ -23,6 +26,9 @@ class VideosController < ApplicationController
       @video.vote_by voter: User.first, :duplicate => true
     end
     # Ipaddresstracker.delete_all
+    respond_to do |f|
+      f.js
+    end
     redirect_to :back
   end
 

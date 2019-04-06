@@ -48,6 +48,7 @@ GEM
     bootstrap-sass (3.4.1)
       autoprefixer-rails (>= 5.2.1)
       sassc (>= 2.0.0)
+    bootstrap-tour-rails (0.4.0)
     builder (3.2.3)
     byebug (11.0.1)
     carrierwave (1.3.1)
@@ -79,6 +80,9 @@ GEM
       activesupport (>= 4.2.0)
     i18n (1.6.0)
       concurrent-ruby (~> 1.0)
+    introjs-rails (1.0.0)
+      sass-rails (>= 3.2)
+      thor (~> 0.14)
     jbuilder (2.8.0)
       activesupport (>= 4.2.0)
       multi_json (>= 1.2)
@@ -198,11 +202,13 @@ PLATFORMS
 DEPENDENCIES
   acts_as_votable (~> 0.11.1)
   bootstrap-sass (~> 3.4.1)
+  bootstrap-tour-rails
   byebug
   carrierwave
   coffee-rails (~> 4.1.0)
   devise (~> 4.4, >= 4.4.1)
   flexbox-rails (~> 1.0)
+  introjs-rails
   jbuilder (~> 2.0)
   jquery-rails
   pg

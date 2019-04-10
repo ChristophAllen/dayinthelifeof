@@ -1,0 +1,2 @@
+class Beenheretracker < ApplicationRecord
+end

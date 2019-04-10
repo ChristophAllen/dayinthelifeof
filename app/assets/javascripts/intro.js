@@ -1,4 +1,3 @@
-//= require introjs
 setTimeout(function() {
-    introJs().start();
+	introJs().start();
 }, 3000);

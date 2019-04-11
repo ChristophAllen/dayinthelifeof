@@ -19,7 +19,7 @@ class VideomasterindexController < ApplicationController
     end
     
     def getpaid
-        
+        Beenheretracker.delete_all
     end
     
     def contactus

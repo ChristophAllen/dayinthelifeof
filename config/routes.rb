@@ -2,13 +2,11 @@ Rails.application.routes.draw do
   devise_for :users#, only: []  
   resources :videos do#, only: [:index, :show] do
     member do
-      put "like", to: "videos#upvote"
-      put "dislike", to: "videos#downvote"
-      put "like" => "videos#like"
-      put "unlike" => "videos#unlike"
+      put "upvote", to: "videos#upvote"
+      put "downvote", to: "videos#downvote"
     end
   end
-  root 'videomasterindex#alphabetical', as: :home
+  root 'videomasterindex#alphabetical', as: :root
   get 'videomasterindex/mostupvoted'
   get 'videomasterindex/alphabetical'
   get 'videomasterindex/mostrecent'

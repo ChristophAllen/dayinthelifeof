@@ -1,18 +1,18 @@
 class VideosController < ApplicationController
   before_action :set_video, only: [:show, :edit, :update, :destroy]
 
-  def like
-    @video.upvote_from current_user
-    respond_to do |f|
-      f.js
-    end
-    render layout: false
-  end
+  # def like
+  #   @video.upvote_from current_user
+  #   respond_to do |f|
+  #     f.js
+  #   end
+  #   render layout: false
+  # end
 
-  def unlike
-    @video.downvote_from current_user
-    render layout: false
-  end
+  # def unlike
+  #   @video.downvote_from current_user
+  #   render layout: false
+  # end
 
   def upvote
     @video = Video.find(params[:id])
@@ -26,10 +26,14 @@ class VideosController < ApplicationController
       @video.vote_by voter: User.first, :duplicate => true
     end
     # Ipaddresstracker.delete_all
-    respond_to do |f|
-      f.js
+    # respond_to do |f|
+    #   f.js
+    # end
+    # redirect_to :back
+    respond_to do |format|
+      format.html { redirect_back fallback_location: root_path }
+      format.json { render layout:false }
     end
-    redirect_to :back
   end
 
   def downvote
@@ -67,7 +71,8 @@ class VideosController < ApplicationController
 
   # GET /videos/new
   def new
-    @video = Video.new
+    # @video = Video.new
+    @videos = Video.order(title: :asc).paginate(:page => params[:page], :per_page => 6)
   end
 
   # GET /videos/1/edit

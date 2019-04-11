@@ -34,10 +34,11 @@ gem 'bootstrap-sass', '~> 3.4.1'
 
 gem 'flexbox-rails', '~> 1.0'
 
-gem 'rails-ujs', '~> 5.1.0.beta1'
+gem 'rails_12factor'
+
+gem 'bootstrap-tour-rails'
 
 gem "introjs-rails"
-
 
 
 # Use ActiveModel has_secure_password

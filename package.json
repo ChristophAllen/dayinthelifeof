@@ -8,10 +8,7 @@
     "test": "test"
   },
   "dependencies": {
-    "intro.js": "^2.9.3",
-    "jquery": "^3.3.1",
-    "js-cookie": "^2.2.0",
-    "shepherd.js": "^2.5.0"
+    "intro.js": "^2.9.3"
   },
   "devDependencies": {},
   "scripts": {

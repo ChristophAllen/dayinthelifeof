@@ -10,29 +10,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190410052347) do
+ActiveRecord::Schema.define(version: 20190401003847) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
-
-  create_table "abraham_histories", force: :cascade do |t|
-    t.string   "controller_name"
-    t.string   "action_name"
-    t.string   "tour_name"
-    t.integer  "creator_id",      null: false
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
-    t.index ["created_at"], name: "index_abraham_histories_on_created_at", using: :btree
-    t.index ["creator_id"], name: "index_abraham_histories_on_creator_id", using: :btree
-    t.index ["updated_at"], name: "index_abraham_histories_on_updated_at", using: :btree
-  end
-
-  create_table "beenheretrackers", force: :cascade do |t|
-    t.string   "ipaddress"
-    t.boolean  "beenhere"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
 
   create_table "ipaddresstrackers", force: :cascade do |t|
     t.string   "ipaddress"
@@ -41,14 +22,6 @@ ActiveRecord::Schema.define(version: 20190410052347) do
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
     t.integer  "videoid"
-    t.boolean  "beenhere"
-  end
-
-  create_table "products", force: :cascade do |t|
-    t.string   "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["name"], name: "index_products_on_name", using: :btree
   end
 
   create_table "users", force: :cascade do |t|

@@ -1,2 +1,0 @@
-class Beenheretracker < ApplicationRecord
-end

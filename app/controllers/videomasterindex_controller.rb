@@ -6,8 +6,6 @@ class VideomasterindexController < ApplicationController
     
     def alphabetical
         @videos = Video.order(title: :asc).paginate(:page => params[:page], :per_page => 6)
-        @ip = request.remote_ip
-        @beenhere = Beenheretracker.find_by(ipaddress: @ip)
     end
     
     def mostrecent

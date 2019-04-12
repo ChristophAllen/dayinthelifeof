@@ -24,7 +24,7 @@
 
         	<%= link_to upvote_video_path(x), method: :put, remote: :true, id: "like-count", class: "btn btn-default btn-sm upvotingthis" do %>
             <span class="glyphicon glyphicon-chevron-up upvotingthis"></span>
-            <% puts x.id %> <% puts x.title %> <% puts "wedwed + " + x.id.to_s %>   
+            <% puts x.id %> <% puts x.title %> <% puts "video-" + x.id.to_s %>   
             
             Upvote
             <div id="video-" + <%= x.id.to_s %> > <%= x.get_upvotes.size %> </div>

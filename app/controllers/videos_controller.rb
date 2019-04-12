@@ -1,39 +1,27 @@
 class VideosController < ApplicationController
   before_action :set_video, only: [:show, :edit, :update, :destroy]
 
-  # def like
-  #   @video.upvote_from current_user
-  #   respond_to do |f|
-  #     f.js
-  #   end
-  #   render layout: false
-  # end
+  def watevs 
 
-  # def unlike
-  #   @video.downvote_from current_user
-  #   render layout: false
-  # end
+  end
 
   def upvote
     @video = Video.find(params[:id])
     @ip = request.remote_ip
-    was_it_upvoted = Ipaddresstracker.find_by(ipaddress: @ip, videoid: @video.id)
-    if was_it_upvoted
+    @was_it_upvoted = Ipaddresstracker.find_by(ipaddress: @ip, videoid: @video.id)
+    if @was_it_upvoted
       @video.downvote_by User.first
-      was_it_upvoted.delete
+      @was_it_upvoted.delete
     else
       Ipaddresstracker.create(:ipaddress => @ip, :videoid => @video.id)
       @video.vote_by voter: User.first, :duplicate => true
     end
     # Ipaddresstracker.delete_all
-    # respond_to do |f|
-    #   f.js
+    # respond_to do |format|
+    #   format.js {render :nothing => true }   # keep this because it actually stops the fucking page from reloading
     # end
-    # redirect_to :back
-    respond_to do |format|
-      format.html { redirect_back fallback_location: root_path }
-      format.json { render layout:false }
-    end
+    
+    # render json: { html: render_to_string(partial: 'random') }
   end
 
   def downvote

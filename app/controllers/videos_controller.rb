@@ -7,6 +7,7 @@ class VideosController < ApplicationController
   end
 
   def upvote
+    # @bool = false
     @video = Video.find(params[:id])
     @ip = request.remote_ip
     @was_it_upvoted = Ipaddresstracker.find_by(ipaddress: @ip, videoid: @video.id)

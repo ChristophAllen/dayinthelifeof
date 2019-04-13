@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190410052347) do
+ActiveRecord::Schema.define(version: 20190413222854) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -66,13 +66,14 @@ ActiveRecord::Schema.define(version: 20190410052347) do
   create_table "videos", force: :cascade do |t|
     t.string   "title"
     t.string   "file"
-    t.datetime "created_at",                     null: false
-    t.datetime "updated_at",                     null: false
+    t.datetime "created_at",                      null: false
+    t.datetime "updated_at",                      null: false
     t.text     "contributor"
     t.string   "email"
     t.string   "phone"
-    t.integer  "cached_votes_total", default: 0
-    t.integer  "cached_votes_up",    default: 0
+    t.integer  "cached_votes_total",  default: 0
+    t.integer  "cached_votes_up",     default: 0
+    t.boolean  "wasitupvotedjustnow"
   end
 
   create_table "votes", force: :cascade do |t|

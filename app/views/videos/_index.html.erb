@@ -4,13 +4,20 @@
   <video controls width="310" height="230" src="<%= x.file %>"></video>
     <p> <%= x.title %> </p>
 
-          <div class="btn-group">
+          <div class="btn-group" onclick="Rails.ajax({url: '/videos/random', type: 'get'})" style="padding: 6px">
             <%= link_to upvote_video_path(x), method: :put, remote: :true, id: "like-count", class: "btn btn-default btn-sm" do %>
 
             <span class="glyphicon glyphicon-chevron-up"></span>
             Upvote
-            <div> <%= x.get_upvotes.size %> </div>
+            <!-- <div> <%= x.get_upvotes.size %> </div> -->
+            <p> <div class="random-book"></div> <%= x.get_upvotes.size %>  </p>
       <% end %>
+
+<!--       <button type="button" onclick="Rails.ajax({url: '/videos/random', type: 'get'})" style="padding: 6px">
+        Get Random Book
+      </button>
+
+      <div class="random-book"></div> -->
 
  <!--          <= link_to dislike_video_path(x), method: :put, remote: :true, id: "like-count", class: "btn btn-default btn-sm" do %>
           <span class="glyphicon glyphicon-chevron-down"></span>
@@ -35,9 +42,8 @@
 </div>
 
 
-<button type="button" onclick="Rails.ajax({url: '/videos/random', type: 'get'})" style="padding: 6px">
+<!-- <button type="button" onclick="Rails.ajax({url: '/videos/random', type: 'get'})" style="padding: 6px">
   Get Random Book
-</button>
+</button> -->
 
-<div class="random-book"></div>
-
+<!-- <div class="random-book"></div> -->

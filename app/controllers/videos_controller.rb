@@ -3,6 +3,7 @@ class VideosController < ApplicationController
 
   def random_book
     @book = Video.all.sample
+    @video = Video.find(params[:id])
   end
 
   def upvote

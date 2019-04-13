@@ -1,8 +1,8 @@
 class VideosController < ApplicationController
   before_action :set_video, only: [:show, :edit, :update, :destroy]
 
-  def watevs 
-
+  def random_book
+    @book = Video.all.sample
   end
 
   def upvote

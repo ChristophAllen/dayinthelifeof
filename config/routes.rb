@@ -1,19 +1,15 @@
 Rails.application.routes.draw do
   devise_for :users#, only: []  
-  resources :videos do#, only: [:index, :show] do
+  # resources :videos do
+  #   get :random, to: 'videos#random_book', on: :collection
+  # end
+   resources :videos do#, only: [:index, :show] do
     member do
       put "upvote", to: "videos#upvote"
       put "downvote", to: "videos#downvote"
     end
   end
-
-
-  resources :videos do
-    get :watevs, to: 'books#watevs', on: :collection
-  end
-
   root 'videomasterindex#alphabetical', as: :root
-  get 'videos/watevs'
   get 'videomasterindex/mostupvoted'
   get 'videomasterindex/alphabetical'
   get 'videomasterindex/mostrecent'

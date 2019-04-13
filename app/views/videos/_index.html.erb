@@ -5,17 +5,19 @@
     <p> <%= x.title %> </p>
 
           <div class="btn-group">
-            <%= link_to like_video_path(x), method: :put, remote: :true, id: "like-count", class: "btn btn-default btn-sm" do %>
+            <%= link_to upvote_video_path(x), method: :put, remote: :true, id: "like-count", class: "btn btn-default btn-sm" do %>
 
             <span class="glyphicon glyphicon-chevron-up"></span>
             Upvote
             <div> <%= x.get_upvotes.size %> </div>
       <% end %>
-          <%= link_to dislike_video_path(x), method: :put, remote: :true, id: "like-count", class: "btn btn-default btn-sm" do %>
+
+ <!--          <= link_to dislike_video_path(x), method: :put, remote: :true, id: "like-count", class: "btn btn-default btn-sm" do %>
           <span class="glyphicon glyphicon-chevron-down"></span>
           Downvote
           <%= x.get_downvotes.size %>
-          <% end %>
+          < end %> -->
+
           <div>
             <br><br>
             <% if user_signed_in? %>
@@ -31,4 +33,11 @@
 </div> </p>
 <% end %>
 </div>
+
+
+<button type="button" onclick="Rails.ajax({url: '/videos/random', type: 'get'})" style="padding: 6px">
+  Get Random Book
+</button>
+
+<div class="random-book"></div>
 

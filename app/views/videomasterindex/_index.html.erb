@@ -4,7 +4,7 @@
   <video controls width="310" height="230" src="<%= x.file %>"></video>
     
           <div class="btn-group">
-            <%= link_to like_video_path(x), method: :put, remote: :true, id: "like-count", class: "btn btn-default btn-sm" do %>
+            <%= link_to upvote_video_path(x), method: :put, remote: :true, id: "like-count", class: "btn btn-default btn-sm" do %>
 
             <span class="glyphicon glyphicon-chevron-up"></span>
             Upvote

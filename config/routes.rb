@@ -1,8 +1,8 @@
 Rails.application.routes.draw do
   devise_for :users#, only: []  
-  # resources :videos do
-  #   get :random, to: 'videos#random_book', on: :collection
-  # end
+  resources :videos do
+    get :random, to: 'videos#random_book', on: :collection
+  end
    resources :videos do#, only: [:index, :show] do
     member do
       put "upvote", to: "videos#upvote"
@@ -18,7 +18,7 @@ Rails.application.routes.draw do
   get 'videomasterindex/contactus'
   get 'videomasterindex/search'
   # post 'videomasterindex/somebutton'
-  # get 'videomasterindex/somebutton'
+  # get 'videomasterindex/somebutton'''''''
 
   # get 'exit', to: 'sessions#destroy', as: :logout
   

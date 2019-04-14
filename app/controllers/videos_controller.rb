@@ -2,7 +2,6 @@ class VideosController < ApplicationController
   before_action :set_video, only: [:show, :edit, :update, :destroy]
 
   def random_book
-    @book = Video.all.sample
     @video = Video.find(params[:id])
   end
 

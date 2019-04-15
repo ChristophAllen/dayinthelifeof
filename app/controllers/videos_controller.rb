@@ -1,12 +1,9 @@
 class VideosController < ApplicationController
   before_action :set_video, only: [:show, :edit, :update, :destroy]
 
-  def random_book
-    @video = Video.find(params[:id])
-  end
+
 
   def upvote
-    # @bool = false
     @video = Video.find(params[:id])
     @ip = request.remote_ip
     @was_it_upvoted = Ipaddresstracker.find_by(ipaddress: @ip, videoid: @video.id)
@@ -17,12 +14,6 @@ class VideosController < ApplicationController
       Ipaddresstracker.create(:ipaddress => @ip, :videoid => @video.id)
       @video.vote_by voter: User.first, :duplicate => true
     end
-    # Ipaddresstracker.delete_all
-    # respond_to do |format|
-    #   format.js {render :nothing => true }   # keep this because it actually stops the fucking page from reloading
-    # end
-    
-    # render json: { html: render_to_string(partial: 'random') }
   end
 
   def downvote

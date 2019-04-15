@@ -1,4 +1,4 @@
-Rails.$('.random-book')[0].innerHTML = ("<%= j (render partial: 'book', locals: { book: @video }) %>")
-
-
-// Rails.$('#video-<%= @video.id %>').innerHTML = ("<%= j (render partial: 'book', locals: { book: @video }) %>")
+Rails.$('.random-book')[1].innerHTML = ("<%= j (render partial: 'book', locals: { book: @video }) %>")
+console.log('#<%=dom_id(Video.find(@video.id))%>')
+console.log(Rails.$('.random-book')[0])
+// Rails.$('.random-book')[1].innerHTML = ("<%= j (render partial: 'book', locals: { book: @video }) %>")

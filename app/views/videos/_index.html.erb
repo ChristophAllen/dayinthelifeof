@@ -4,27 +4,22 @@
   <video controls width="310" height="230" src="<%= x.file %>"></video>
     <p> <%= x.title %> </p>
 
-          <div onclick="Rails.ajax({url: '/videos/random', type: 'get'})" style="padding: 6px">
+          <div>
             <%= link_to upvote_video_path(x), method: :put, remote: :true, class: "btn btn-default btn-sm" do %>
 
             <span class="glyphicon glyphicon-chevron-up"></span>
             Upvote
 
-                        <% puts "ello" %>
-                        <% puts "ello" %>
-                        <% puts "ello" %>
-                        <% puts "ello" %>
+                        <% puts dom_id(Video.find(x.id)) %>
+                        <% puts x.title %>
+                        <% puts x.title %>
+                        <% puts x.title %>
                         <% puts "wedwe" + x.id.to_s %>
 
 
-            <div class="random-book" id = <%= "video-" + x.id.to_s %> > <%= x.get_upvotes.size %> </div>
+            <div class="random-book" id= "<%= dom_id(Video.find(x.id)) %>" > <%= x.get_upvotes.size %> </div>
       <% end %>
 
- <!--          <= link_to dislike_video_path(x), method: :put, remote: :true, id: "like-count", class: "btn btn-default btn-sm" do %>
-          <span class="glyphicon glyphicon-chevron-down"></span>
-          Downvote
-          <%= x.get_downvotes.size %>
-          < end %> -->
 
           <div>
             <br><br>

@@ -13,7 +13,7 @@
         <div class="btn-group upvotingthis">
 
 
-        <% if bool && !@beenhere %>
+        <% if bool && @beenhere %>
         	<div data-step='2' data-intro="Upvote without an Account!" data-position="top">
         	<%= link_to upvote_video_path(x), method: :put, remote: :true, id: "like-count", class: "btn btn-default btn-sm" do %>
             <span class="glyphicon glyphicon-chevron-up"></span>

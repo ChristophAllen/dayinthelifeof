@@ -26,6 +26,8 @@ class VideosController < ApplicationController
   # GET /videos.json
   def index
     # @videos = Video.search(params[:search], params[:id]).order(:cached_votes_total=> :desc)
+    @ip2 = request.remote_ip
+    @beenhere2 = Beenheretracker.find_by(ipaddress: @ip2)
     @videos = Video.all
     if @videos 
       

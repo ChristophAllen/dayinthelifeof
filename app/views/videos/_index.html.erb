@@ -1,27 +1,31 @@
+<% bool = true %>
+<h1>Can Ya Hear Me??</h1>
 <div class="container">
 <% @videos.each do |x| %>
 <p> <div class="child">  
   <video controls width="310" height="230" src="<%= x.file %>"></video>
-    <p> <%= x.title %> </p>
+        <div class="btn-group upvotingthis">
 
-          <div>
-            <%= link_to upvote_video_path(x), method: :put, remote: :true, class: "btn btn-default btn-sm" do %>
 
+        <% if bool && @beenhere %>
+          <div data-step='2' data-intro="Upvote without an Account!" data-position="top">
+          <%= link_to upvote_video_path(x), method: :put, remote: :true, class: "btn btn-default btn-sm" do %>
             <span class="glyphicon glyphicon-chevron-up"></span>
             Upvote
-
-                        <% puts dom_id(Video.find(x.id)) %>
-                        <% puts x.title %>
-                        <% puts x.title %>
-                        <% puts x.title %>
-                        <% puts "wedwe" + x.id.to_s %>
-
-
-            <div class="random-book" id= "<%= dom_id(Video.find(x.id)) %>" > <%= x.get_upvotes.size %> </div>
+            <div class="random-book" id= "<%= dom_id(Video.find(x.id)) %>" > <%= x.get_upvotes.size.to_s + " / " + x.title %> </div>
+        <% end %>
+        </div>
+        <% Beenheretracker.create(:ipaddress => @ip) %>
+      <% else %>
+          <%= link_to upvote_video_path(x), method: :put, remote: true, id: "like-count", class: "btn btn-default btn-sm" do %>
+            <span class="glyphicon glyphicon-chevron-up"></span>
+            Upvote
+            <div class="random-book" id= "<%= dom_id(Video.find(x.id)) %>" > <%= x.get_upvotes.size.to_s + " / " + x.title %> </div>
+        <% end %>
       <% end %>
+      <% bool = false %>
+          <div> 
 
-
-          <div>
             <br><br>
             <% if user_signed_in? %>
               <p> Contributor: <%= x.contributor %> </p>
@@ -31,7 +35,6 @@
             <% end %>
           </div>
           </div>
-          
 
 </div> </p>
 <% end %>

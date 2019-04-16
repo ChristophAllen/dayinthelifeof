@@ -26,9 +26,10 @@ class VideosController < ApplicationController
   # GET /videos.json
   def index
     # @videos = Video.search(params[:search], params[:id]).order(:cached_votes_total=> :desc)
-    @ip2 = request.remote_ip
-    @beenhere2 = Beenheretracker.find_by(ipaddress: @ip2)
-    @videos = Video.all
+    @ip = request.remote_ip
+    Beenheretracker.create(:ipaddress => @ip)
+    @beenhere = Beenheretracker.find_by(ipaddress: @ip)
+    @videos = Video.order(title: :asc).paginate(:page => params[:page], :per_page => 6)
     if @videos 
       
     else
@@ -53,7 +54,7 @@ class VideosController < ApplicationController
 
   # GET /videos/new
   def new
-    # @video = Video.new
+    @video = Video.new
     @videos = Video.order(title: :asc).paginate(:page => params[:page], :per_page => 6)
   end
 

@@ -7,7 +7,7 @@ Rails.application.routes.draw do
       put "downvote", to: "videos#downvote"
     end
   end
-  root 'videomasterindex#alphabetical', as: :root
+  root 'videos#index', as: :root
   get 'videomasterindex/mostupvoted'
   get 'videomasterindex/alphabetical'
   get 'videomasterindex/mostrecent'

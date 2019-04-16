@@ -1,54 +1,5 @@
 <h1>New Video</h1>
 
-<!-- <= render 'form' %> -->
+<%= render 'form' %>
 
-<!-- <= link_to 'Back', videos_path %> -->
-
-
-
-<p id="notice"><%= notice %></p>
-
-<div class="displayoption"><%save_options = [['Alphabetical','videomasterindex/alphabetical'],['Most Upvoted','videomasterindex/mostupvoted'],['Most Recent','videomasterindex/mostrecent']]%>
-<%= select_tag "store-selects", options_for_select(save_options),:onchange => "self.location='/'+this.options[this.selectedIndex].value", class: "your_class" %>
-</div>
-
-
-<div class="container">
-<% @videos.each do |x| %>
-<p> <div class="child">  
-  <video controls width="310" height="230" src="<%= x.file %>"></video>
-        <div class="btn-group upvotingthis">
-
-
-
-
-
-
-        	<%= link_to upvote_video_path(x), method: :put, remote: :true, id: "like-count", class: "btn btn-default btn-sm upvotingthis" do %>
-            <span class="glyphicon glyphicon-chevron-up upvotingthis"></span>  
-            Upvote
-            <div id="video-" + <%= x.id.to_s %> class="likes-story-count random-book"> <%= x.get_upvotes.size %> 
-            </div>
-    		<% end %>
-
-<!--  i think I'm learning that <% %> does't work inside quotes, you have to add <% %> to a string -->
-
-
-
-          <div> 
-
-            <br><br>
-            <% if user_signed_in? %>
-              <p> Contributor: <%= x.contributor %> </p>
-              <p> Email: <%= x.email %> </p>
-              <p> Phone: <%= x.phone %> </p>
-              <p> <%= link_to 'Destroy', x, method: :delete, data: { confirm: 'Are you sure?' } %> </p>
-            <% end %>
-          </div>
-          </div>
-          
- <%= x.title %> 
- 
-</div> </p>
-<% end %>
-</div>
+<%= link_to 'Back', videos_path %>

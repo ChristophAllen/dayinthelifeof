@@ -1,6 +1,5 @@
-setTimeout(function() {
-	introJs().start();
-}, 3000);
+// setTimeout(function() {
+// 	introJs().start();
+// }, 3000);
 
-
-// change routes so that videos/index is root 
+// Take out the search bar on the alphabetical view page, and figure out what is wrong with the search bar

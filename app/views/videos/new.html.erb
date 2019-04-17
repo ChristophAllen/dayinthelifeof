@@ -3,3 +3,11 @@
 <%= render 'form' %>
 
 <%= link_to 'Back', videos_path %>
+
+
+
+<!-- steps are to create a PG dump file, upload it to amazons3 then use command: heroku pg:backups restore 'https://s3.amazonaws.com/me/items/3H0q/mydb.dump' DATABASE_URL to import your database -->
+
+
+<!-- 
+ heroku pg:backups:restore https://s3.amazonaws.com/s3-us-west-1.amazonaws.com/dayinthelifeofbucket/mydb.dump?AWSAccessKeyId=AKIAJP42TRMYFUMB764A&Expires=1555401128&Signature=e%2B9So5G1SvIqqpWXZzquC5qXEBA%3D postgres://tjmiduudpsopca:449758076e7eaf8f4995ad82c8277131c3398c41a99e648f6e81c55d585ef05a@ec2-50-17-227-28.compute-1.amazonaws.com:5432/dqcr0or9hahbs -->

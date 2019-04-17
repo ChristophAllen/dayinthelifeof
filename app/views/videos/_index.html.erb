@@ -1,5 +1,8 @@
+<div class="displayoption"><%save_options = [['Alphabetical','videomasterindex/alphabetical'],['Most Upvoted','videomasterindex/mostupvoted'],['Most Recent','videomasterindex/mostrecent']]%>
+<%= select_tag "store-selects", options_for_select(save_options),:onchange => "self.location='/'+this.options[this.selectedIndex].value", class: "your_class" %>
+</div>
+
 <% bool = true %>
-<h1>Can Ya Hear Me??</h1>
 <div class="container">
 <% @videos.each do |x| %>
 <p> <div class="child">  
@@ -39,4 +42,11 @@
 </div> </p>
 <% end %>
 </div>
+
+<script>
+// self executing function here
+(function() {
+  introJs().start();
+})();
+</script>
 

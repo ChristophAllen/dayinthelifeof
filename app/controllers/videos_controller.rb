@@ -26,14 +26,18 @@ class VideosController < ApplicationController
   # GET /videos.json
   def index
     # @videos = Video.search(params[:search], params[:id]).order(:cached_votes_total=> :desc)
-    @ip = request.remote_ip
-    Beenheretracker.create(:ipaddress => @ip)
-    @beenhere = Beenheretracker.find_by(ipaddress: @ip)
-    @videos = Video.order(title: :asc).paginate(:page => params[:page], :per_page => 6)
-    if @videos 
-      
+    if params[:search]
+      @videos = Video.search(params[:search])
     else
-      @videos = Video.all
+      @ip = request.remote_ip
+      Beenheretracker.create(:ipaddress => @ip)
+      @beenhere = Beenheretracker.find_by(ipaddress: @ip)
+      @videos = Video.order(title: :asc).paginate(:page => params[:page], :per_page => 6)
+      if @videos 
+      
+      else
+        @videos = Video.all
+      end
     end
   end
 
@@ -111,7 +115,7 @@ class VideosController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def video_params
-      params.require(:video).permit(:title, :file, :contributor, :email, :phone)
+      params.require(:video).permit(:title, :file, :contributor, :email, :phone, :search)
     end
 end
 

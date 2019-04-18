@@ -27,14 +27,9 @@ class VideomasterindexController < ApplicationController
     end
     
     def search
-        puts "Search from VideoMasterIndex"
-        puts "Search from VideoMasterIndex"
-        puts "Search from VideoMasterIndex"
-        puts "Search from VideoMasterIndex"
-        puts "Search from VideoMasterIndex"
-        if params[:search]
-            @posts = Video.search(params[:search])
-        else
+        # if params[:search]
+        #     @posts = Video.search(params[:search])
+        # else
             @tempposts = Video.order(title: :asc)
             @posts = []
             @tempposts.each do |x|
@@ -48,9 +43,7 @@ class VideomasterindexController < ApplicationController
                     @posts.push(x)        
                 end
             end
-        end
+        # end
     end
-    def video_params
-      params.require(:video).permit(:search)
-    end
+    
 end

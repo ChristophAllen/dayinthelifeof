@@ -27,7 +27,7 @@ class VideosController < ApplicationController
   def index
     # @videos = Video.search(params[:search], params[:id]).order(:cached_votes_total=> :desc)
     if params[:search]
-      @videos = Video.search(params[:search])
+      @videos = Video.where('title LIKE ?', "%#{params[:search]}%")
     else
       @ip = request.remote_ip
       Beenheretracker.create(:ipaddress => @ip)

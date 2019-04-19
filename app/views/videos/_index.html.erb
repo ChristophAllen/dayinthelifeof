@@ -1,46 +1,65 @@
-<div class="displayoption"><%save_options = [['Alphabetical','videomasterindex/alphabetical'],['Most Upvoted','videomasterindex/mostupvoted'],['Most Recent','videomasterindex/mostrecent']]%>
-<%= select_tag "store-selects", options_for_select(save_options),:onchange => "self.location='/'+this.options[this.selectedIndex].value", class: "your_class" %>
+<div class="row mb-20">
+  <div class="col-md-3">
+    <div class="displayoption">
+      <% save_options = [['Alphabetical','videomasterindex/alphabetical'],['Most Upvoted','videomasterindex/mostupvoted'],['Most Recent','videomasterindex/mostrecent']] %>
+      <%= select_tag "store-selects", options_for_select(save_options),:onchange => "self.location='/'+this.options[this.selectedIndex].value", class: "your_class form-control" %>
+    </div>
+  </div>
 </div>
 
 <% bool = true %>
-<div class="container">
-<% @videos.each do |x| %>
-<p> <div class="child">  
-  <video controls width="310" height="230" src="<%= x.file %>"></video>
-        <div class="btn-group upvotingthis">
-
-
-        <% if bool && @beenhere %>
-          <div data-step='2' data-intro="Upvote without an Account!" data-position="top">
-          <%= link_to upvote_video_path(x), method: :put, remote: :true, class: "btn btn-default btn-sm" do %>
-            <span class="glyphicon glyphicon-chevron-up"></span>
-            Upvote
-            <div class="random-book" id= "<%= dom_id(Video.find(x.id)) %>" > <%= x.get_upvotes.size.to_s + " / " + x.title %> </div>
-        <% end %>
-        </div>
-        <% Beenheretracker.create(:ipaddress => @ip) %>
-      <% else %>
-          <%= link_to upvote_video_path(x), method: :put, remote: true, id: "like-count", class: "btn btn-default btn-sm" do %>
-            <span class="glyphicon glyphicon-chevron-up"></span>
-            Upvote
-            <div class="random-book" id= "<%= dom_id(Video.find(x.id)) %>" > <%= x.get_upvotes.size.to_s + " / " + x.title %> </div>
-        <% end %>
-      <% end %>
-      <% bool = false %>
-          <div> 
-
-            <br><br>
-            <% if user_signed_in? %>
-              <p> Contributor: <%= x.contributor %> </p>
-              <p> Email: <%= x.email %> </p>
-              <p> Phone: <%= x.phone %> </p>
-              <p> <%= link_to 'Destroy', x, method: :delete, data: { confirm: 'Are you sure?' } %> </p>
+<div class="row">
+  <% @videos.each do |x| %>
+    <div class="col-md-4">  
+      <video controls width="310" height="230" src="<%= x.file %>"></video>
+      <div class="btn-group upvotingthis row">
+        <div class="col-md-12">
+          <% if bool && @beenhere %>
+            <div data-step='2' data-intro="Upvote without an Account!" data-position="top">
+              <%= link_to upvote_video_path(x), method: :put, remote: :true, class: "btn btn-default btn-sm" do %>
+                <span class="glyphicon glyphicon-chevron-up"></span>Upvote
+                <div class="random-book" id= "<%= dom_id(Video.find(x.id)) %>" > <%= x.get_upvotes.size.to_s + " / " + x.title %></div>
+              <% end %>
+            </div>
+            <% Beenheretracker.create(:ipaddress => @ip) %>
+          <% else %>
+            <%= link_to upvote_video_path(x), method: :put, remote: true, id: "like-count", class: "btn btn-default btn-sm" do %>
+              <span class="glyphicon glyphicon-chevron-up"></span>Upvote
+              <div class="random-book" id= "<%= dom_id(Video.find(x.id)) %>" > <%= x.get_upvotes.size.to_s + " / " + x.title %></div>
             <% end %>
+          <% end %>
+        </div>
+      </div>
+      <% bool = false %>
+      <% if user_signed_in? %>
+        <div class="row">
+          <div class="col-md-12">
+            <br>
+            <table class="table table-bordered" style="width:310px;">
+              <tbody>
+                <tr>
+                  <td><strong>Contributor:</strong></td>
+                  <td><%= x.contributor %></td>
+                </tr>
+                <tr>
+                  <td><strong>Email:</strong></td>
+                  <td><%= x.email %></td>
+                </tr>
+                <tr>
+                  <td><strong>Phone:</strong></td>
+                  <td><%= x.phone %></td>
+                </tr>
+                <tr>
+                  <td></td>
+                  <td><%= link_to 'Destroy', x, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+                </tr>
+              </tbody>
+            </table>
           </div>
-          </div>
-
-</div> </p>
-<% end %>
+        </div>
+      <% end %>
+    </div>
+  <% end %>
 </div>
 
 <script>
@@ -49,4 +68,3 @@
   introJs().start();
 })();
 </script>
-

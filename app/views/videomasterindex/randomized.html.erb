@@ -1,5 +1,3 @@
-<p id="notice"><%= notice %></p>
-
 <div class="displayoption"><%save_options = [['Randomized','videomasterindex/randomized'],['Most Recent','videomasterindex/mostrecent'],['Most Upvoted','videomasterindex/mostupvoted'],['Alphabetical','videomasterindex/alphabetical']]%>
 <%= select_tag "store-selects", options_for_select(save_options),:onchange => "self.location='/'+this.options[this.selectedIndex].value", class: "your_class" %>
 </div>

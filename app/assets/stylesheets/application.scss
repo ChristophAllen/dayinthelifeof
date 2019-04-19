@@ -18,25 +18,25 @@
 
 
 .displayoption {
-  padding-left: 4.8%;
+  // padding-left: 4.8%;
 }
 
 .searchcolumn {
-  padding-left: 4.8%;
+  // padding-left: 4.8%;
 }
 
 .genpadleft {
-  padding-left: 5.3%;
+  // padding-left: 5.3%;
 }
 
-.container {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: center;
-  // align-items: center;
-  align-content: center;
-}
+// .container {
+//   display: flex;
+//   flex-direction: row;
+//   flex-wrap: wrap;
+//   justify-content: center;
+//   // align-items: center;
+//   align-content: center;
+// }
 
 .child {
   width: 300px;  /* Or whatever */
@@ -44,3 +44,6 @@
   margin: auto;  /* Magic! */
   margin-bottom: 100px;
 }
+
+.mb-20{margin-bottom: 20px;}
+.clear{clear: both;}

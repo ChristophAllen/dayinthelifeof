@@ -1,34 +1,30 @@
-<h1 class="searchcolumn">Search Function</h1>
-<br>
+<!-- <h1 class="searchcolumn">Search Function</h1> -->
+<!-- <br> -->
 <div class="searchcolumn">
-<%= form_tag videos_path, :method => 'get'  do %>
-   <%= text_field_tag :search, params[:search]%>
-   <%= submit_tag "Search", :name => nil  %>
+  <%= form_tag videos_path, :method => 'get', class: "form-inline" do %>
+    <div class="form-group">
+      <%= text_field_tag :search, params[:search], class: "form-control" %>
+    </div>
+    <%= submit_tag "Search", :name => nil, class: "btn btn-primary" %>
  <% end %>
 </div>
-<hr />
+<hr/>
 
 <div class="searchcolumn">
-<table>
-<tr>
-    <th>Title</th>
-  </tr>
- <tr>
-  <td><hr></td>
-  <td><hr></td>
-</tr>
-
-  <% @posts.each do |post| %>
-
-    <tr>
-      <td> <%= link_to post.title, video_path(post) %> </td>
-      <!--<td> <= post %> </td>-->
-      <!--<td> <= button_to "Some Button", { :controller => "videomasterindex", :action => "somebutton"} %> </td>-->
-    </tr>
-    <tr>
-      <td><hr></td>
-      <td><hr></td>
-    </tr>
-  <% end %>
-</table>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Title</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @posts.each do |post| %>
+        <tr>
+          <td><%= link_to post.title, video_path(post) %></td>
+          <!--<td> <= post %> </td>-->
+          <!--<td> <= button_to "Some Button", { :controller => "videomasterindex", :action => "somebutton"} %> </td>-->
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
 </div>

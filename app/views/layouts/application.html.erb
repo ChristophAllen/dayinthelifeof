@@ -1,85 +1,57 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>Workspace</title>
+  <head>
+    <title>Workspace</title>
     <%= csrf_meta_tags %>
-
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
 
-    <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet" id="bootstrap-css">
-<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
 
-</head>
-<body>
-<div class="container">
-  <div class="row">
-    <div class="span12">
-      <div class="head">
-        <div class="row-fluid">
-            <div class="span12">
-                <div class="span6">
-                    <!--<h1 class="muted">Day in the Life of..</h1>-->
-                </div>
-            </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+
+
+    <!-- <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet" id="bootstrap-css"> -->
+    <!-- <script src="//code.jquery.com/jquery-1.11.1.min.js"></script> -->
+  </head>
+  <body>
+    <nav class="navbar navbar-default" style="margin-top: 30px;">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <a class="navbar-brand" href="<%=root_path%>">Day In The Life Of</a>
         </div>
-
-        <div class="navbar">
-            <div class="navbar-inner">
-                <div class="container">
-                    <ul class="nav">
-                        <li>
-                            <a href=<%=root_path%>>Day In The Life Of</a>
-                        </li>
-
-                        <li>
-                            <a href="/videomasterindex/search">Search</a>
-                        </li>
-
-                        <% if @beenhere %>
-
-                            <li> 
-                                <a href='/videomasterindex/getpaid' data-step='1' data-intro='Learn How to Get Paid By Us!' data-position="right"> Get Paid </a> 
-                            </li>
-
-                        <% else %>
-
-                            <li> 
-                                <a href='/videomasterindex/getpaid'> Get Paid </a> 
-                            </li>
-
-                        <% end %>
-
-
-
-
-
-                        <li>
-                            <a href="/videomasterindex/contactus">Contact Me</a>
-                        </li>
-
-                        <li>
-                            <a href="/videos/new">Videos New</a>
-                        </li>
-                                                
-                        <li class="span4 offset2">
-                            <% if user_signed_in? %>
-                                <button class="btn pull-right"> <%= link_to "Sign out", destroy_user_session_path, :method => :delete %> </button>
-                            <% end %>
-                            <% if !user_signed_in? %>
-                                <button class ="btn pull-right"> <a href="/users/sign_up">Sign In</a> </button>
-                            <% end %>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </div>
+        <ul class="nav navbar-nav">
+          <li><a href="/videomasterindex/search">Search</a></li>
+          <li>
+            <% if @beenhere %>
+              <a href='/videomasterindex/getpaid' data-step='1' data-intro='Learn How to Get Paid By Us!' data-position="right"> Get Paid </a> 
+            <% else %>
+              <a href='/videomasterindex/getpaid'> Get Paid </a> 
+            <% end %>
+          </li>
+          <li><a href="/videomasterindex/contactus">Contact Me</a></li>
+          <li><a href="/videos/new">Videos New</a></li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+          <% if user_signed_in? %>
+            <li><%= link_to "Sign out", destroy_user_session_path, :method => :delete %></li>
+          <% else %>
+            <li><a href="/users/sign_up">Sign Up</a></li>
+            <li><a href="/users/sign_in">Sign In</a></li>
+          <% end %>
+        </ul>
       </div>
+    </nav>
+    <div class="container">
+      <% if notice %>
+        <div class="alert alert-success alert-dismissible">
+          <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+          <%= notice %>
+        </div>
+      <% end %>
+      <%= yield %>
     </div>
-  </div>
-</div>
-
-<%= yield %>
-
-</body>
+  </body>
 </html>

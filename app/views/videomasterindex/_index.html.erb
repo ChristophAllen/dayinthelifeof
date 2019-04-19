@@ -1,41 +1,50 @@
-<div class="container">
-<% @videos.each do |x| %>
-<p> <div class="child">  
-  <video controls width="310" height="230" src="<%= x.file %>"></video>
+<div class="row">
+  <% @videos.each do |x| %>
+    <div class="col-md-4">  
+      <video controls width="310" height="230" src="<%= x.file %>"></video>
+      <div class="btn-group row">
+        <div class="col-md-12">
+          <%= link_to upvote_video_path(x), method: :put, remote: :true, id: "like-count", class: "btn btn-default btn-sm" do %>
+            <span class="glyphicon glyphicon-chevron-up"></span>Upvote
+            <div> <%= x.get_upvotes.size.to_s + " / " + x.title %> </div>
+          <% end %>
     
-          <div class="btn-group">
-            <%= link_to upvote_video_path(x), method: :put, remote: :true, id: "like-count", class: "btn btn-default btn-sm" do %>
+          <%#= link_to dislike_video_path(x), method: :put, remote: :true, id: "like-count", class: "btn btn-default btn-sm" do %>
+            <!-- <span class="glyphicon glyphicon-chevron-down"></span>Downvote -->
+            <%#= x.get_downvotes.size %>
+          <%# end %>
+        </div>
+      </div>
 
-            <span class="glyphicon glyphicon-chevron-up"></span>
-            Upvote
-            <div> <%= x.get_upvotes.size %> </div>
-      <% end %>
-    
- <!--          <= link_to dislike_video_path(x), method: :put, remote: :true, id: "like-count", class: "btn btn-default btn-sm" do %>
-          <span class="glyphicon glyphicon-chevron-down"></span>
-          Downvote
-          <= x.get_downvotes.size %>
-          < end %> -->
-          <div> 
-
-            <br><br>
-            <% if user_signed_in? %>
-              <p> Contributor: <%= x.contributor %> </p>
-              <p> Email: <%= x.email %> </p>
-              <p> Phone: <%= x.phone %> </p>
-              <p> <%= link_to 'Destroy', x, method: :delete, data: { confirm: 'Are you sure?' } %> </p>
-            <% end %>
-          </div>
-          </div>
-          
- <%= x.title %> 
- 
-</div> </p>
-<% end %>
+      <div class="row">
+        <div class="col-md-12">
+          <br>
+          <table class="table table-bordered" style="width:310px;">
+            <tbody>
+              <tr>
+                <td><strong>Contributor:</strong></td>
+                <td><%= x.contributor %></td>
+              </tr>
+              <tr>
+                <td><strong>Email:</strong></td>
+                <td><%= x.email %></td>
+              </tr>
+              <tr>
+                <td><strong>Phone:</strong></td>
+                <td><%= x.phone %></td>
+              </tr>
+              <tr>
+                <td></td>
+                <td><%= link_to 'Destroy', x, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  <% end %>
 </div>
 
 <%= will_paginate @videos %>
 
 <br><br>
-
-

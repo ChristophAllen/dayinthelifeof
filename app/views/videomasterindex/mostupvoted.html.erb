@@ -1,8 +1,10 @@
-<p id="notice"><%= notice %></p>
-
-<div class="displayoption"><%save_options = [['Most Upvoted','videomasterindex/mostupvoted'],['Most Recent','videomasterindex/mostrecent'],['Alphabetical','videomasterindex/alphabetical']]%>
-<%= select_tag "store-selects", options_for_select(save_options),:onchange => "self.location='/'+this.options[this.selectedIndex].value", class: "your_class" %>
+<div class="row mb-20">
+  <div class="col-md-3">
+		<div class="displayoption">
+			<%save_options = [['Most Upvoted','videomasterindex/mostupvoted'],['Most Recent','videomasterindex/mostrecent'],['Alphabetical','videomasterindex/alphabetical']]%>
+			<%= select_tag "store-selects", options_for_select(save_options),:onchange => "self.location='/'+this.options[this.selectedIndex].value", class: "your_class form-control" %>
+		</div>
+	</div>
 </div>
 
 <%= render 'index' %>
-
